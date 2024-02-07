@@ -78,7 +78,7 @@
         <h6 class="collapse-header">Login Screens:</h6>
         <?php
         // Check if the user is a superadmin (role ID = 1)
-        if ($_SESSION['role_id'] == 1) {
+        if ($_SESSION['roleId'] == 1) {
             echo '<a class="collapse-item" href="/myecommerceapp/templates/adminRegister.php">Register</a>';
         }
         ?>

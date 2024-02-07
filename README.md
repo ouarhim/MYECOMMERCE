@@ -17,7 +17,7 @@ Installation
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/your-username/my-ecommerce-app.git
+git clone https://github.com/ouarhim/MYECOMMERCE
 Import the database schema located in database/database.sql to your MySQL server.
 
 Configure the database connection in includes/database.php with your MySQL credentials.
