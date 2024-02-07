@@ -1,0 +1,56 @@
+/* Your existing CSS styles */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    background-color: #363636; /* Change this color code to your desired color */
+    color: #fff; /* Optionally, change text color */
+    padding-left: 20px; /* Adjust left padding as needed */
+    padding-right: 20px; /* Adjust right padding as needed */
+    margin-top: auto;
+}
+
+/* Add this style to make the container full width */
+.container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0; /* Remove padding from container-fluid */
+}
+nav {
+     margin: 0;
+
+}
+.navbar-brand {
+    margin-left: 1rem;
+}
+.navbar-toggler-icon {
+    margin-right: 1rem;
+}
+
+/* signin */
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
