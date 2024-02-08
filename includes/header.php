@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/myecommerceapp/index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -47,6 +47,7 @@
                 <!-- User is logged in -->
                 <li><span class="dropdown-header">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
                 <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-header" href="/myecommerceapp/models/orderModel.php">Order</a></li>
                 <li><a class="dropdown-header" href="/myecommerceapp/models/logout.php">Logout</a></li>
             <?php } else { ?>
                 <!-- User is not logged in -->
