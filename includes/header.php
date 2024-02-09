@@ -47,8 +47,10 @@
                 <!-- User is logged in -->
                 <li><span class="dropdown-header">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
                 <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-header" href="/myecommerceapp/templates/favoriteProductPage.php">Favorites</a></li>
                 <li><a class="dropdown-header" href="/myecommerceapp/models/orderModel.php">Order</a></li>
                 <li><a class="dropdown-header" href="/myecommerceapp/models/logout.php">Logout</a></li>
+                
             <?php } else { ?>
                 <!-- User is not logged in -->
                 <li><a class="dropdown-header" href="/myecommerceapp/templates/signIn.php">SignIn</a></li>
