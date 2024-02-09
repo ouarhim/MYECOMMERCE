@@ -82,7 +82,7 @@
             echo '<a class="collapse-item" href="/myecommerceapp/templates/adminRegister.php">Register</a>';
         }
         ?>
-        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+        <a class="collapse-item" href="/myecommerceapp/templates/forgot-password.php">Forgot Password</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Other Pages:</h6>
         <a class="collapse-item" href="/myecommerceapp/includes/access-denied.php">Access Denied</a>
