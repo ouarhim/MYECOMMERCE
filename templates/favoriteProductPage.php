@@ -1,11 +1,10 @@
+<?php include '/opt/lampp/htdocs/myecommerceapp/includes/header.php'; ?>
 <?php
 require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
-
 // Check if the user is logged in
-session_start();
 if (!isset($_SESSION['userId'])) {
     // Redirect the user to the login page if not logged in
-    header("Location: /myecommerceapp/login.php");
+    header("Location: /myecommerceapp/templates/signIn.php");
     exit();
 }
 
@@ -21,24 +20,23 @@ $stmt->bind_param("i", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
-<?php include '/opt/lampp/htdocs/myecommerceapp/includes/header.php'; ?>
-<?php
-while ($product = $result->fetch_assoc()) {
-    // Display the product details here
-    echo '<div class="card" style="width: 18rem;">';
-    echo '<img src="' . $product['image'] . '" class="card-img-top" alt="' . $product['name'] . '">';
-    echo '<div class="card-body">';
-    echo '<h5 class="card-title">' . $product['name'] . '</h5>';
-    echo '<p class="card-text">' . $product['description'] . '</p>';
-    echo '<p class="card-text">Price: $' . $product['price'] . '</p>';
-    echo '<form action="/myecommerceapp/includes/remove_from_favorites.php" method="post">';
-    echo '<input type="hidden" name="productId" value="' . $product['productId'] . '">';
-    echo '<button type="submit" class="btn btn-danger">Remove from Favorites</button>';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-}
 
-$stmt->close();
-?>
-<?php include '/opt/lampp/htdocs/myecommerceapp/includes/footer.php';?>
+<div class="container mt-4">
+    <div class="row">
+        <?php while ($product = $result->fetch_assoc()) : ?>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <a href="/myecommerceapp/templates/productPage.php?id=<?php echo $product['productId']; ?>" class="text-decoration-none text-dark">
+                    <div class="card-banner d-flex justify-content-center align-items-center rounded-2" style="height: 350px; background-image: url(<?php echo $product['image']; ?>); background-size: cover; background-position: center;"></div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $product['name']; ?></h5>
+                            <p class="card-text">Model: <?php echo $product['description']; ?></p>
+                            <p class="card-text">$<?php echo $product['price']; ?></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>
+<?php include '/opt/lampp/htdocs/myecommerceapp/includes/footer.php'; ?>

@@ -1,5 +1,6 @@
 <?php
 require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
+
 // Fetch products with display order
 $productsSql = "SELECT * FROM products ORDER BY displayOrder";
 $databaseInfo = connectDatabase();
@@ -9,6 +10,17 @@ $productsResult = $conn->query($productsSql);
 
 // Set the number of products to display per row
 $productsPerRow = $settings['productsPerRow'];
+
+// Fetch user's favorite products
+$userFavoriteProducts = [];
+if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+    $userFavoritesSql = "SELECT productId FROM user_favorites WHERE userId = $userId";
+    $userFavoritesResult = $conn->query($userFavoritesSql);
+    while ($row = $userFavoritesResult->fetch_assoc()) {
+        $userFavoriteProducts[] = $row['productId'];
+    }
+}
 
 // Display products
 $counter = 0;
@@ -21,7 +33,7 @@ while ($product = $productsResult->fetch_assoc()) {
     echo '<div class="card my-2 shadow-0">';
     echo '<a href="/myecommerceapp/templates/productPage.php?id=' . $product['productId'] . '" class="product-link">'; // Link to product page
     echo '<div class="card-banner d-flex justify-content-center align-items-center rounded-2" style="height: 350px; background-image: url(\'' . $product['image'] . '\'); background-size: cover; background-position: center;">';
-    echo '<div class="badge bg-danger position-absolute top-0 start-0 p-2">';
+    echo '<div class="badge bg-danger position-absolute top-0 start-0 pt-1">';
     echo '<h6><span class="badge bg-danger top-0 start-0 p-0">New</span></h6>';
     echo '</div>';
     echo '</div>';
@@ -29,7 +41,9 @@ while ($product = $productsResult->fetch_assoc()) {
     echo '<div class="card-body p-0 pt-3">';
     echo '<form action="/myecommerceapp/models/add-to-favorites.php" method="post" class="d-inline">';
     echo '<input type="hidden" name="productId" value="' . $product['productId'] . '">';
-    echo '<button type="submit" class="btn btn-light border px-2 pt-2 float-end icon-hover toggle-color"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></button>';
+    // Check if the product is already in favorites and set the button color accordingly
+    $buttonColorClass = (in_array($product['productId'], $userFavoriteProducts)) ? 'text-danger' : 'text-secondary';
+    echo '<button type="submit" class="btn btn-light border px-2 pt-2 float-end icon-hover toggle-color"><i class="fas fa-heart fa-lg px-1 ' . $buttonColorClass . '"></i></button>';
     echo '</form>';
     echo '<h5 class="card-title">$' . $product['price'] . '</h5>';
     echo '<p class="card-text mb-0">' . $product['name'] . '</p>';
@@ -54,6 +68,12 @@ if ($counter % $productsPerRow !== 0) {
 }
 
 ?>
+<style>
+.product-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+}
+</style>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const toggleButtons = document.querySelectorAll('.toggle-color');
@@ -68,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
             heartIcon.classList.toggle('text-secondary');
             heartIcon.classList.toggle('text-danger');
 
-            // Send the AJAX request to add the product to the user's favorites
+            // Send the AJAX request to add or remove the product from the user's favorites
             fetch('/myecommerceapp/models/add-to-favorites.php', {
                 method: 'POST',
                 body: new FormData(form),
@@ -90,5 +110,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
 </script>

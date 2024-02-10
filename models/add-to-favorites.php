@@ -14,20 +14,42 @@ if (isset($_POST['productId'])) {
         $conn = $databaseInfo['conn'];
         $settings = $databaseInfo['settings'];
 
-        // Prepare and execute the SQL query to insert the product into user's favorites
-        $sql = "INSERT INTO user_favorites (userId, productId) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $userId, $productId);
+        // Check if the product is already in user's favorites
+        $checkSql = "SELECT * FROM user_favorites WHERE userId = ? AND productId = ?";
+        $checkStmt = $conn->prepare($checkSql);
+        $checkStmt->bind_param("ii", $userId, $productId);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
 
-        if ($stmt->execute()) {
-            // Product added to favorites successfully
-            echo json_encode(array('success' => true));
+        if ($checkResult->num_rows > 0) {
+            // Product is already in favorites, so remove it
+            $deleteSql = "DELETE FROM user_favorites WHERE userId = ? AND productId = ?";
+            $deleteStmt = $conn->prepare($deleteSql);
+            $deleteStmt->bind_param("ii", $userId, $productId);
+            if ($deleteStmt->execute()) {
+                // Product removed from favorites successfully
+                echo json_encode(array('success' => true, 'action' => 'remove'));
+            } else {
+                // Error removing product from favorites
+                echo json_encode(array('success' => false, 'error' => 'Error removing product from favorites'));
+            }
+            $deleteStmt->close();
         } else {
-            // Error inserting product into favorites
-            echo json_encode(array('success' => false, 'error' => 'Error inserting product into favorites'));
+            // Product is not in favorites, so add it
+            $addSql = "INSERT INTO user_favorites (userId, productId) VALUES (?, ?)";
+            $addStmt = $conn->prepare($addSql);
+            $addStmt->bind_param("ii", $userId, $productId);
+            if ($addStmt->execute()) {
+                // Product added to favorites successfully
+                echo json_encode(array('success' => true, 'action' => 'add'));
+            } else {
+                // Error adding product to favorites
+                echo json_encode(array('success' => false, 'error' => 'Error adding product to favorites'));
+            }
+            $addStmt->close();
         }
 
-        $stmt->close();
+        $checkStmt->close();
     } else {
         // User is not logged in
         echo json_encode(array('success' => false, 'error' => 'User is not logged in'));

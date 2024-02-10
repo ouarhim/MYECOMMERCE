@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-// Include necessary files and establish a database connection
 require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
 
 // Retrieve stored product information from session
@@ -16,7 +14,7 @@ if (empty($cart)) {
 // Check if the user is logged in
 if (!isset($_SESSION['userId'])) {
     // Redirect to the login page if the user is not logged in
-    header("Location: /myecommerceapp/login.php");
+    header("Location: /myecommerceapp/templates/signIn.php");
     exit();
 }
 
@@ -24,12 +22,11 @@ if (!isset($_SESSION['userId'])) {
 $userId = $_SESSION['userId'];
 
 // Initialize variables for order total
-$totalPrice = 0;
+$orderTotalPrice = 0;
 
 // Establish database connection
 $connInfo = connectDatabase();
 $conn = $connInfo['conn'];
-$settings = $connInfo['settings'];
 
 // Calculate total price and build the order details
 foreach ($cart as $productId => $item) {
@@ -42,14 +39,14 @@ foreach ($cart as $productId => $item) {
     $product = $result->fetch_assoc();
 
     // Calculate total price for each item
-    $totalPrice += $product['price'] * $item['quantity'];
+    $orderTotalPrice += $product['price'] * $item['quantity'];
 }
 
 // Insert order details into the database
 $orderDate = date("Y-m-d H:i:s");
 $insertOrderSql = "INSERT INTO orders (userId, total, orderDate) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($insertOrderSql);
-$stmt->bind_param("ids", $userId, $totalPrice, $orderDate);
+$stmt->bind_param("ids", $userId, $orderTotalPrice, $orderDate);
 
 if ($stmt->execute()) {
     $orderId = $stmt->insert_id; // Get the auto-generated order ID
@@ -68,13 +65,12 @@ if ($stmt->execute()) {
     // Clear the stored product information from the session after confirming the order
     unset($_SESSION['cart']);
 
-    // Redirect to a confirmation page or any other desired page
-    header("Location: /myecommerceapp/ordermodel.php?orderId=$orderId");
+    // Redirect to the order confirmation page with the order ID
+    header("Location: /myecommerceapp/models/purchase_order.php?orderId=$orderId");
     exit();
 } else {
-    echo "Error: " . $conn->error;
+    // Redirect to an error page or display a message
+    header("Location: /myecommerceapp/error.php");
+    exit();
 }
-
-// Close the database connection
-$conn->close();
 ?>
