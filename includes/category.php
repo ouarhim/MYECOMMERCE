@@ -9,7 +9,7 @@
             require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
 
             // Fetch categories from the database
-            $categoriesSql = "SELECT * FROM categories";
+            $categoriesSql = "SELECT categoryId, categoryName, iconClass FROM categories";
             $databaseInfo = connectDatabase();
             $conn = $databaseInfo['conn'];
             $settings = $databaseInfo['settings'];
@@ -24,7 +24,7 @@
                 }
 
                 echo '<div class="col-lg-' . (12 / $categoryPerRow) . ' col-md-' . (12 / $categoryPerRow) . '12">';
-                echo '<a href="#" class="text-center d-flex flex-column justify-content-center">';
+                echo '<a href="/myecommerceapp/templates/categoryPage.php?category_id=' . $category['categoryId'] . '" class="text-center d-flex flex-column justify-content-center">';
                 echo '<button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2" data-mdb-ripple-color="dark">';
                 echo '<i class="' . $category['iconClass'] . ' fa-xl fa-fw"></i>';
                 echo '</button>';
@@ -41,4 +41,5 @@
             ?>
         </nav>
     </div>
+    
 </section>

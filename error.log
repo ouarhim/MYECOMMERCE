@@ -1,0 +1,8 @@
+[12-Feb-2024 17:55:02 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "getProducts" not found or invalid function name in /opt/lampp/htdocs/myecommerceapp/api/products/api.php:37
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/myecommerceapp/api/products/api.php on line 37
+[12-Feb-2024 18:07:02 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "getProducts" not found or invalid function name in /opt/lampp/htdocs/myecommerceapp/api/products/api.php:75
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/myecommerceapp/api/products/api.php on line 75

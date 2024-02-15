@@ -65,53 +65,75 @@ if ($resultContent && $resultContent->num_rows > 0) {
 
 <!-- Your HTML form code goes here -->
 
-<?php include '/opt/lampp/htdocs/myecommerceapp/includes/headerAdmin.php';?>
-<!-- Admin Panel: Edit Homepage Content Form -->
-<form action="/myecommerceapp/includes/admin_editHomepage.php" method="post">
-    <label for="select_id">Select ID to Update:</label>
-    <select id="select_id" name="select_id">
-        <?php foreach ($carouselItems as $item) { ?>
-            <option value="<?php echo $item['id']; ?>"><?php echo $item['id']; ?></option>
-        <?php } ?>
-    </select>
-    
-    <label for="main_title">Main Title:</label>
-    <input type="text" id="main_title" name="main_title" value="" required>
+<?php include '/opt/lampp/htdocs/myecommerceapp/includes/headerAdmin.php'; ?>
+<div class="container">
+    <!-- Admin Panel: Edit Homepage Content Form -->
+    <form action="/myecommerceapp/includes/admin_editHomepage.php" method="post" class="mt-5">
+        <div class="mb-3">
+            <label for="select_id" class="form-label">Select ID to Update:</label>
+            <select id="select_id" name="select_id" class="form-select">
+                <?php foreach ($carouselItems as $item) { ?>
+                    <option value="<?php echo $item['id']; ?>"><?php echo $item['id']; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="main_title" class="form-label">Main Title:</label>
+            <input type="text" id="main_title" name="main_title" class="form-control" required>
+        </div>
 
-    <label for="main_subtitle">Main Subtitle:</label>
-    <textarea id="main_subtitle" name="main_subtitle" required></textarea>
+        <div class="mb-3">
+            <label for="main_subtitle" class="form-label">Main Subtitle:</label>
+            <textarea id="main_subtitle" name="main_subtitle" class="form-control" required></textarea>
+        </div>
 
-    <label for="main_button_text">Main Button Text:</label>
-    <input type="text" id="main_button_text" name="main_button_text" value="" required>
+        <div class="mb-3">
+            <label for="main_button_text" class="form-label">Main Button Text:</label>
+            <input type="text" id="main_button_text" name="main_button_text" class="form-control" required>
+        </div>
 
-    <label for="main_button_link">Main Button Link:</label>
-    <input type="text" id="main_button_link" name="main_button_link" value="" required>
+        <div class="mb-3">
+            <label for="main_button_link" class="form-label">Main Button Link:</label>
+            <input type="text" id="main_button_link" name="main_button_link" class="form-control" required>
+        </div>
 
-    <label for="aside_title">Aside Title:</label>
-    <input type="text" id="aside_title" name="aside_title" value="" required>
+        <div class="mb-3">
+            <label for="aside_title" class="form-label">Aside Title:</label>
+            <input type="text" id="aside_title" name="aside_title" class="form-control" required>
+        </div>
 
-    <label for="aside_subtitle">Aside Subtitle:</label>
-    <textarea id="aside_subtitle" name="aside_subtitle" required></textarea>
+        <div class="mb-3">
+            <label for="aside_subtitle" class="form-label">Aside Subtitle:</label>
+            <textarea id="aside_subtitle" name="aside_subtitle" class="form-control" required></textarea>
+        </div>
 
-    <label for="aside_button_text">Aside Button Text:</label>
-    <input type="text" id="aside_button_text" name="aside_button_text" value="" required>
+        <div class="mb-3">
+            <label for="aside_button_text" class="form-label">Aside Button Text:</label>
+            <input type="text" id="aside_button_text" name="aside_button_text" class="form-control" required>
+        </div>
 
-    <label for="aside_button_link">Aside Button Link:</label>
-    <input type="text" id="aside_button_link" name="aside_button_link" value="" required>
-    
-    <label for="background_image_url">Background Image URL:</label>
-    <input type="text" id="background_image_url" name="background_image_url" value="" required>
+        <div class="mb-3">
+            <label for="aside_button_link" class="form-label">Aside Button Link:</label>
+            <input type="text" id="aside_button_link" name="aside_button_link" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="background_image_url" class="form-label">Background Image URL:</label>
+            <input type="text" id="background_image_url" name="background_image_url" class="form-control" required>
+        </div>
 
-    <input type="submit" value="Save Changes">
-</form>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
 
-<!-- Display messages -->
-<?php
-if ($successMessage) {
-    echo '<div class="alert alert-success" role="alert">' . $successMessage . '</div>';
-}
+    <!-- Display messages -->
+    <?php
+    if ($successMessage) {
+        echo '<div class="alert alert-success mt-3" role="alert">' . $successMessage . '</div>';
+    }
 
-if ($errorMessage) {
-    echo '<div class="alert alert-danger" role="alert">' . $errorMessage . '</div>';
-}
-?>
+    if ($errorMessage) {
+        echo '<div class="alert alert-danger mt-3" role="alert">' . $errorMessage . '</div>';
+    }
+    ?>
+</div>

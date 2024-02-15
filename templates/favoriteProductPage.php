@@ -23,6 +23,7 @@ $result = $stmt->get_result();
 
 <div class="container mt-4">
     <div class="row">
+        <h2>Favorite page:</h2>
         <?php while ($product = $result->fetch_assoc()) : ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card">
