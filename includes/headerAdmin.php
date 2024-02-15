@@ -15,6 +15,7 @@
     <title>MY-Commerce Website</title>
     
 </head>
+
 <?php include '/opt/lampp/htdocs/myecommerceapp/controllers/adminController.php';?>
 <body id="page-top">
 

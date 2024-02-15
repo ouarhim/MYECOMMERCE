@@ -1,6 +1,8 @@
 <?php
 
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
 
             // Assuming you have a 'roleId' stored in the session after login
             $userRoleId = $_SESSION['roleId'];
@@ -18,6 +20,6 @@
             }
 
             // Continue with the rest of your code for the page or action
-            // ...
+            // ...0
 
         ?>

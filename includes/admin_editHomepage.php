@@ -1,4 +1,5 @@
 <?php
+
 // Include necessary files and establish a database connection
 require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
 
