@@ -34,7 +34,10 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <?php
-              session_start();
+              if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            
               ?>
               <?php if (isset($_SESSION['username'])) { ?>
                   <!-- User is logged in -->
