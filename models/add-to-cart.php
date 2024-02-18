@@ -29,6 +29,6 @@ $_SESSION['cart'][$productId] = [
 ];
 
 // Redirect back to the product page
-header("Location: /myecommerceapp/templates/productPage.php?id=$productId");
+header("Location: {$_SERVER['HTTP_REFERER']}");
 exit();
 ?>
