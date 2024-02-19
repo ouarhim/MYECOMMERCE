@@ -1,10 +1,10 @@
 <!-- Category Section -->
-<section>
-    <div class="container pt-5">
-        <header class="mb-5">
-            <h3>Category</h3>
+<section class="pt-5">
+    <div class="container">
+        <header class="mb-4">
+            <h3 class="text-center pb-3">Category</h3>
         </header>
-        <nav class="row gy-4">
+        <div class="row gy-4">
             <?php
             require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
 
@@ -19,27 +19,26 @@
             $categoryPerRow = 6;
             $iconCounter = 0;
             while ($category = $categoriesResult->fetch_assoc()) {
-                if ($iconCounter % 6 === 0) {
+                if ($iconCounter % $categoryPerRow === 0) {
                     echo '<div class="row">';
                 }
 
-                echo '<div class="col-lg-' . (12 / $categoryPerRow) . ' col-md-' . (12 / $categoryPerRow) . '12">';
-                echo '<a href="/myecommerceapp/templates/categoryPage.php?category_id=' . $category['categoryId'] . '" class="text-center d-flex flex-column justify-content-center">';
-                echo '<button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2" data-mdb-ripple-color="dark">';
+                echo '<div class="col-lg-' . (12 / $categoryPerRow) . ' col-md-' . (12 / $categoryPerRow) . '">';
+                echo '<a href="/myecommerceapp/templates/categoryPage.php?category_id=' . $category['categoryId'] . '" class="text-decoration-none text-dark d-flex flex-column align-items-center">';
+                echo '<button type="button" class="btn btn-outline-secondary mb-2" data-mdb-ripple-color="dark">';
                 echo '<i class="' . $category['iconClass'] . ' fa-xl fa-fw"></i>';
                 echo '</button>';
-                echo '<div class="text-dark">' . $category['categoryName'] . '</div>';
+                echo '<div class="text-center">' . $category['categoryName'] . '</div>';
                 echo '</a>';
                 echo '</div>';
 
-                if ($iconCounter % $categoryPerRow  === $categoryPerRow - 1) {
+                if ($iconCounter % $categoryPerRow === $categoryPerRow - 1 || $iconCounter === mysqli_num_rows($categoriesResult) - 1) {
                     echo '</div>';
                 }
 
                 $iconCounter++;
             }
             ?>
-        </nav>
+        </div>
     </div>
-    
 </section>

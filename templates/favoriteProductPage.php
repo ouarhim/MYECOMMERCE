@@ -20,6 +20,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
+
 ?>
 
 <div class="container mt-4">
@@ -28,6 +29,10 @@ $result = $stmt->get_result();
         <?php while ($product = $result->fetch_assoc()) : ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card my-2 shadow-sm border" style="height: 550px">
+                <form action="/myecommerceapp/models/deleteFavorit.php" method="post" class="position-absolute top-0 end-0 m-2">
+                            <input type="hidden" name="deleteProductId" value="<?php echo $product['productId']; ?>">
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                        </form>
                     <a href="/myecommerceapp/templates/productPage.php?id=<?php echo $product['productId']; ?>" class="text-decoration-none text-dark">
                         <div class="card-banner d-flex justify-content-center align-items-center rounded-2" style="height: 350px; background-image: url(<?php echo $product['image']; ?>); background-size: cover; background-position: center;"></div>
                         <div class="card-body">
