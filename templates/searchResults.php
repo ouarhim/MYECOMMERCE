@@ -78,5 +78,49 @@ include '/opt/lampp/htdocs/myecommerceapp/includes/header.php';?>
     }
     ?>
 </div>
+<style>
+.product-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleButtons = document.querySelectorAll('.toggle-color');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const form = button.parentElement;
+            const productId = form.querySelector('input[name="productId"]').value;
+
+            // Toggle the color of the heart icon
+            const heartIcon = button.querySelector('i.fa-heart');
+            heartIcon.classList.toggle('text-secondary');
+            heartIcon.classList.toggle('text-danger');
+
+            // Send the AJAX request to add or remove the product from the user's favorites
+            fetch('/myecommerceapp/models/add-to-favorites.php', {
+                method: 'POST',
+                body: new FormData(form),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Log the response data for debugging
+                // Optionally, you can show a message or update UI based on the response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors here
+            });
+        });
+    });
+});
+</script>
+
 
 <?php include '/opt/lampp/htdocs/myecommerceapp/includes/footer.php'; ?>

@@ -42,7 +42,7 @@ if (isset($_POST['query'])) {
     padding-left: 0.25rem!important;
 }
   .mt-1 {
-    margin-top: 2.5rem!important;
+    margin-top: 9rem!important;
 }
     .product-link {
     display: block;

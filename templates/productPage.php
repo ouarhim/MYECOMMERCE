@@ -37,7 +37,7 @@ $categories = $categoriesResult->fetch_assoc();
             <p class="text-muted">Description: <?php echo $product['description']; ?></p>
             <p class="card-text text-muted mb-1 small"><span class="text-danger fw-bold">$<?php echo $product['price']; ?></span> <del class="text-muted small">$<?php echo $product['price']*1.2; ?></del></p>
             <!-- Add to Cart Form -->
-            <form action="/myecommerceapp/models/add-to-cart.php" method="post">
+            <form class="pb-2" action="/myecommerceapp/models/add-to-cart.php" method="post">
                 <input type="hidden" name="productId" value="<?php echo $product['productId']; ?>">
                 <div class="form-group">
                     <div class="form-group row">

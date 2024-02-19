@@ -25,12 +25,14 @@
                     <a class="nav-link active" aria-current="page" href="/myecommerceapp/index.php">Home</a>
                 </li>
             </ul>
-            <form id="searchForm" class="d-flex center" action="/myecommerceapp/templates/searchResults.php" method="GET">
-              <input type="text" id="searchInput" class="form-control" name="query" placeholder="Search for products">
-              <!-- Product List -->
-              <div id="productList" class="dropdown-menu position-absolute bg-light border rounded-2 mt-1 px-1" style="width: 100px; display: none;"></div>
-              <button id="searchButton" class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            <form id="searchForm" class="d-flex align-items-center col-md-6 col-md-offset-3" action="/myecommerceapp/templates/searchResults.php" method="GET">
+                <div class="input-group">
+                    <input type="text" id="searchInput" class="form-control" name="query" placeholder="Search for products" aria-label="Search for products" aria-describedby="searchButton">
+                    <button id="searchButton" class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <!-- Product List -->
+                <div id="productList" class="dropdown-menu position-absolute bg-light border rounded-2 mt-1 px-1" style="width: 100px; display: none;"></div>
+            </form>
 
             <div class="ms-3">
                 <ul class="navbar-nav">
