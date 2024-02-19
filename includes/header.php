@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,23 +46,18 @@
                             <i class="fas fa-user"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <?php
-                            if (session_status() === PHP_SESSION_NONE) {
-                                session_start();
-                            }
-                            ?>
                             <?php if (isset($_SESSION['username'])) { ?>
                                 <!-- User is logged in -->
-                                <li><span class="dropdown-header">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
+                                <li><span class="dropdown-header">Welcome,<?php echo $_SESSION['username'];?>!</span></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/myecommerceapp/templates/favoriteProductPage.php">Favorites</a></li>
                                 <li><a class="dropdown-item" href="/myecommerceapp/models/orderModel.php">Order</a></li>
                                 <li><a class="dropdown-item" href="/myecommerceapp/models/logout.php">Logout</a></li>
-                            <?php } else { ?>
+                            <?php } else {?>
                                 <!-- User is not logged in -->
                                 <li><a class="dropdown-item" href="/myecommerceapp/templates/signIn.php">SignIn</a></li>
                                 <li><a class="dropdown-item" href="/myecommerceapp/templates/register.php">Register</a></li>
-                            <?php } ?>
+                            <?php }?>
                         </ul>
                     </li>
                 </ul>
@@ -110,5 +110,5 @@
 
 <!-- Bootstrap Bundle JS -->
 <script src="/myecommerceapp/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+

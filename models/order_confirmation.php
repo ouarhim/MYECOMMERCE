@@ -1,22 +1,4 @@
-<style>
-body {
-            background-color: #f4f4f4;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .confirmation-box {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .btn-back {
-            margin-top: 20px;
-        }
-    </style>
+
 <?php
 // Start session
 include '/opt/lampp/htdocs/myecommerceapp/includes/header.php';
@@ -68,3 +50,19 @@ if(isset($_GET['confirmationId'])) {
 // Include footer or any other necessary files
 include '/opt/lampp/htdocs/myecommerceapp/includes/footer.php';
 ?>
+<style>
+body {
+            background-color: #f4f4f4;
+        }
+        .confirmation-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>

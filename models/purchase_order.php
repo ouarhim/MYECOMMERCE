@@ -1,7 +1,12 @@
 <?php
-// Start session
-include '/opt/lampp/htdocs/myecommerceapp/includes/header.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+ob_start(); // Start output buffering
+
+
 // Include necessary files and establish a database connection
+require_once('/opt/lampp/htdocs/myecommerceapp/includes/header.php');
 require_once('/opt/lampp/htdocs/myecommerceapp/includes/database.php');
 
 // Check if the form is submitted
@@ -115,4 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include '/opt/lampp/htdocs/myecommerceapp/includes/footer.php';
 }
+
+ob_end_flush(); // Flush the output buffer and send the output to the browser
 ?>
