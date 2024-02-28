@@ -1,5 +1,6 @@
 <?php include '/opt/lampp/htdocs/myecommerceapp/includes/headerAdmin.php'; ?>
 
+
 <div class="container mt-5">
     <h2>Order Confirmation Data</h2>
     <table class="table table-striped">
@@ -24,7 +25,7 @@
             $conn = $databaseInfo['conn'];
             $settings = $databaseInfo['settings'];
             // Fetch data from the orderConfirmation table and join with users table to get user's name
-            $sql = "SELECT ordersConfirmation.confirmationId, ordersConfirmation.orderId, users.username AS userName, ordersConfirmation.total, ordersConfirmation.shippingAddress, ordersConfirmation.shippingCity, ordersConfirmation.shippingState, ordersConfirmation.shippingZip 
+            $sql = "SELECT ordersConfirmation.confirmationId, ordersConfirmation.orderId, users.username AS userName, ordersConfirmation.total, ordersConfirmation.shippingAddress, ordersConfirmation.shippingCity, ordersConfirmation.shippingState, ordersConfirmation.shippingZip, ordersConfirmation.shipped
                     FROM ordersConfirmation 
                     JOIN users ON ordersConfirmation.userId = users.userId"; // Assuming 'userId' is the common field between ordersConfirmation and users table
             $result = $conn->query($sql);
@@ -41,24 +42,15 @@
                     echo "<td>" . $row['shippingState'] . "</td>";
                     echo "<td>" . $row['shippingZip'] . "</td>";
                     
-                    
-                    // Fetch products for this order
-                    $orderId = $row['orderId'];
-                    $productsSql = "SELECT products.name, orderItems.quantity FROM orderItems JOIN products ON orderItems.productId = products.productId WHERE orderItems.orderId = $orderId";
-                    $productsResult = $conn->query($productsSql);
-
-                    if ($productsResult && $productsResult->num_rows > 0) {
-                        while ($product = $productsResult->fetch_assoc()) {
-                           
-                        }
-                    } else {
-                        echo "No products";
-                    }
-                    
-                   
+                    // Check if the order has been shipped
+                    $shipped = $row['shipped'] ? 'Yes' : 'No';
                     
                     // Button to ship order
-                    echo "<td><button class='btn btn-primary ship-order' data-order-id='" . $row['orderId'] . "'>Ship Order</button></td>";
+                    if (!$row['shipped']) {
+                        echo "<td><button class='btn btn-primary ship-order' data-order-id='" . $row['orderId'] . "'>Ship Order</button></td>";
+                    } else {
+                        echo "<td>Shipped</td>";
+                    }
                     
                     echo "</tr>";
                 }
@@ -109,3 +101,4 @@
             .catch(error => console.error('Error fetching product details:', error));
     }
 </script>
+ 

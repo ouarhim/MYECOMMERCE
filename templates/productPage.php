@@ -50,7 +50,17 @@ $categories = $categoriesResult->fetch_assoc();
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
             </form>
+
         </div>
+        <section>
+    <div class="container my-5">
+        <header class="mb-4">
+            <h3>Similar products</h3>
+        </header>
+
+        <?php include '/opt/lampp/htdocs/myecommerceapp/controllers/productPageControler.php';?>
+    </div>
+</section>
     </div>
 </div>
 
