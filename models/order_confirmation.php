@@ -28,7 +28,7 @@ if(isset($_GET['confirmationId'])) {
         // Display order confirmation message and details
         echo "<h2 class='text-center'>Order Confirmation</h2>";
         echo "<p class='text-center'>Your order has been confirmed. Here are the details:</p>";
-        echo "<p class='text-center'><strong>Order ID:</strong> " . $orderDetails['orderId'] . "</p>";
+        echo "<p class='text-center'><strong>Order number:</strong> " . $orderDetails['orderId'] . "</p>";
         echo "<p class='text-center'><strong>Total:</strong> $" . $orderDetails['total'] . "</p>";
         echo "<p class='text-center'><strong>Shipping Address:</strong> " . $orderDetails['shippingAddress'] . "</p>";
         echo "<p class='text-center'><strong>City:</strong> " . $orderDetails['shippingCity'] . "</p>";
