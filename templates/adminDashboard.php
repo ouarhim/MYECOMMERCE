@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="...">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="/myecommerceapp/public/images/img/undraw_posting_photo.svg" alt="...">
                                     </div>
                                     <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
                                         constantly updated collection of beautiful svg images that you can use
@@ -147,7 +147,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                    <p>Makes extensive use of Bootstrap 4 utility classes in order to reduce
                                         CSS bloat and poor page performance. Custom CSS classes are used to create
                                         custom components and custom utility classes.</p>
                                     <p class="mb-0">Before working with this theme, you should become familiar with the
@@ -168,7 +168,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright © Your Website 2021</span>
+                        <span>Copyright © Your Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -196,11 +196,10 @@
     <script src="/myecommerceapp/public/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/myecommerceapp/public/js/chart.js/Chart.min.js"></script>
+
 
     <!-- Page level custom scripts -->
-    <script src="/myecommerceapp/public/js/demo/chart-area-demo.js"></script>
-    <script src="/myecommerceapp/public/js/demo/chart-pie-demo.js"></script>
+
 
 
 </body>

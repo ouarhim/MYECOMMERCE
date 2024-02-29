@@ -56,7 +56,7 @@ $conn->close();
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-area">
+                <div class="chart-area" style="height: 30rem;  width: auto;">
                     <canvas id="salesChart"></canvas>
                 </div>
             </div>

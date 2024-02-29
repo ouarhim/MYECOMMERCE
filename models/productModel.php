@@ -1,4 +1,6 @@
 <?php include '/opt/lampp/htdocs/myecommerceapp/includes/headerAdmin.php';?>
+<body>
+    
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -60,3 +62,17 @@
         </table>
     </div>
 </div>
+<a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/myecommerceapp/public/js/jquery.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/myecommerceapp/public/js/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/myecommerceapp/public/js/sb-admin-2.min.js"></script>
+</body>
